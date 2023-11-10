@@ -35,7 +35,7 @@ const RegisterationForm = ({ params }) => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="container mx-auto p-6 flex flex-col justify-center items-center">
         <h1 className="text-white text-2xl mb-10">
-          Registration Form {params.text}
+          Registration Form For {params.text}
         </h1>
         {params.text === "Student" && <StudentForm />}
         {params.text === "Teacher" && <TeacherForm />}

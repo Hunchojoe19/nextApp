@@ -17,10 +17,42 @@ const TeacherForm = () => {
     salary: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Teacher name:", inputValue);
+    const submitData = { inputValue };
+
+    try {
+      const res = await fetch("http://localhost:3000/api/teacher", {
+        method: "POST",
+        body: JSON.stringify(submitData),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      console.log(res);
+      if (res.ok) {
+        console.log("Yeai!");
+      } else {
+        console.log("Oops! Something is wrong.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setInputValue({
+      firstName: "",
+      surname: "",
+      dateOfBirth: date,
+      teacherNumber: "",
+      nationalId: "",
+      title: "",
+      salary: "",
+    });
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Teacher name:", inputValue);
+  // };
   return (
     <div className="w-full h-full bg-zinc-700 rounded-lg lg:w-[50%]">
       <div className="flex flex-col justify-center items-start p-6 lg:items-center">
