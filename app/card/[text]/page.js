@@ -6,31 +6,6 @@ import TeacherForm from "@/app/component/teacherForm/page";
 import StudentForm from "@/app/component/studentForm/page";
 
 const RegisterationForm = ({ params }) => {
-  // const [teacherName, setTeacherName] = useState("");
-  // const [nameError, setNameError] = useState("");
-
-  // const handleInputChange = (e) => {
-  //   setTeacherName(e.target.value);
-
-  //   if (e.target.value.trim() === "") {
-  //     setNameError("Name is required");
-  //   } else {
-  //     setNameError("");
-  //   }
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (teacherName.trim() === "") {
-  //     setNameError("Name is required");
-  //     return;
-  //   }
-
-  //   console.log("Teacher name:", teacherName);
-  // };
-
-  1;
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="container mx-auto p-6 flex flex-col justify-center items-center">

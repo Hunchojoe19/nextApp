@@ -51,10 +51,6 @@ const TeacherForm = () => {
     });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Teacher name:", inputValue);
-  // };
   return (
     <div className="w-full h-full bg-zinc-700 rounded-lg lg:w-[50%]">
       <div className="flex flex-col justify-center items-start p-6 lg:items-center">
