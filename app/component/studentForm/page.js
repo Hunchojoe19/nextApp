@@ -3,11 +3,13 @@ import TextValidationForm from "@/app/component/textValidation/page";
 import dayjs from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useRouter } from "next/navigation";
 
 const StudentForm = () => {
   const date = dayjs().subtract(21, "year");
+  const router = useRouter();
   const [error, setError] = useState("");
-  const [inputValue, setInputValue] = useState({
+  const [studentsData, setStudentsData] = useState({
     firstName: "",
     surname: "",
     dateOfBirth: date,
@@ -15,17 +17,42 @@ const StudentForm = () => {
     nationalId: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Teacher name:", inputValue);
+    const submitData = { studentsData };
+
+    try {
+      const res = await fetch("http://localhost:3000/api/student", {
+        method: "POST",
+        body: JSON.stringify(submitData),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      console.log(res);
+      if (res.ok) {
+        router.push("/");
+      } else {
+        console.log("Oops! Something is wrong.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setStudentsData({
+      firstName: "",
+      surname: "",
+      dateOfBirth: date,
+      studentNumber: "",
+      nationalId: "",
+    });
   };
   return (
     <div className="w-full h-full bg-zinc-700 rounded-lg lg:w-[50%]">
       <TextValidationForm
         placeholder="First Name"
-        value={inputValue.firstName}
+        value={studentsData.firstName}
         onChange={(e) => {
-          setInputValue({ ...inputValue, firstName: e.target.value });
+          setStudentsData({ ...studentsData, firstName: e.target.value });
           if (e.target.value.trim() === "") {
             setError("Name is required");
           } else {
@@ -36,9 +63,9 @@ const StudentForm = () => {
       />
       <TextValidationForm
         placeholder="Surname"
-        value={inputValue.surname}
+        value={studentsData.surname}
         onChange={(e) => {
-          setInputValue({ ...inputValue, surname: e.target.value });
+          setStudentsData({ ...studentsData, surname: e.target.value });
           if (e.target.value.trim() === "") {
             setError("Name is required");
           } else {
@@ -57,9 +84,9 @@ const StudentForm = () => {
               borderRadius: "5px",
             }}
             label="Date Of Birth"
-            value={inputValue.dateOfBirth}
+            value={studentsData.dateOfBirth}
             onChange={(prev) =>
-              setInputValue({ ...inputValue, dateOfBirth: prev })
+              setStudentsData({ ...studentsData, dateOfBirth: prev })
             }
             minDate={date}
           />
@@ -67,9 +94,9 @@ const StudentForm = () => {
       </div>
       <TextValidationForm
         placeholder="Student Number"
-        value={inputValue.studentNumber}
+        value={studentsData.studentNumber}
         onChange={(e) => {
-          setInputValue({ ...inputValue, studentNumber: e.target.value });
+          setStudentsData({ ...studentsData, studentNumber: e.target.value });
           if (e.target.value.trim() === "") {
             setError("Field is required");
           } else {
@@ -80,9 +107,9 @@ const StudentForm = () => {
       />
       <TextValidationForm
         placeholder="National ID"
-        value={inputValue.nationalId}
+        value={studentsData.nationalId}
         onChange={(e) => {
-          setInputValue({ ...inputValue, nationalId: e.target.value });
+          setStudentsData({ ...studentsData, nationalId: e.target.value });
           if (e.target.value.trim() === "") {
             setError("National ID is required");
           } else {

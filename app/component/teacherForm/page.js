@@ -3,9 +3,11 @@ import TextValidationForm from "@/app/component/textValidation/page";
 import dayjs from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useRouter } from "next/navigation";
 
 const TeacherForm = () => {
   const date = dayjs().subtract(21, "year");
+  const router = useRouter();
   const [error, setError] = useState("");
   const [inputValue, setInputValue] = useState({
     firstName: "",
@@ -31,7 +33,7 @@ const TeacherForm = () => {
       });
       console.log(res);
       if (res.ok) {
-        console.log("Yeai!");
+        router.push("/");
       } else {
         console.log("Oops! Something is wrong.");
       }
