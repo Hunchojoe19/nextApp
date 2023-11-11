@@ -6,7 +6,7 @@ export async function GET() {
   let teachersData = [];
   const query = localStorage.getItem("teachersData");
   // console.log(query, query.length);
-  if (query.length)
+  if (query?.length)
     teachersData = JSON.parse(localStorage.getItem("teachersData"));
 
   return NextResponse.json({ teachersData });
@@ -16,7 +16,7 @@ export async function POST(req, res) {
   const data = await req.json();
   const query = localStorage.getItem("teachersData");
   // console.log(query, query.length);
-  if (query.length)
+  if (query?.length)
     teachersData = JSON.parse(localStorage.getItem("teachersData"));
 
   teachersData.push(data);

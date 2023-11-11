@@ -1,18 +1,25 @@
 import { NextResponse } from "next/server";
-
-let studentsData = [];
-
 const LocalStorage = require("node-localstorage").LocalStorage;
 const localStorage = new LocalStorage("./datastore");
+
 export async function GET() {
-  return NextResponse.json({ studentsData }, { status: 200 });
+  let studentData = [];
+  const query = localStorage.getItem("studentData");
+  if (query?.length)
+    studentData = JSON.parse(localStorage.getItem("studentData"));
+
+  return NextResponse.json({ studentData });
 }
 export async function POST(req, res) {
+  let studentData = [];
   const data = await req.json();
-  studentsData = localStorage.getItem("studentData") || [];
-  studentsData.push(data);
-  localStorage.setItem("studentData", studentsData);
-  console.log("data ", data);
+  const query = localStorage.getItem("studentData");
 
-  return NextResponse.json(data);
+  if (query?.length)
+    studentData = JSON.parse(localStorage.getItem("studentData"));
+
+  studentData.push(data);
+  localStorage.setItem("studentData", JSON.stringify(studentData));
+
+  return NextResponse.json(studentData);
 }

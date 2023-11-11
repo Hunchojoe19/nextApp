@@ -19,12 +19,11 @@ const StudentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const submitData = { studentsData };
 
     try {
       const res = await fetch("http://localhost:3000/api/student", {
         method: "POST",
-        body: JSON.stringify(submitData),
+        body: JSON.stringify(studentsData),
         headers: {
           "content-type": "application/json",
         },
