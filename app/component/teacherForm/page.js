@@ -21,19 +21,20 @@ const TeacherForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const submitData = { inputValue };
+    // const sub = inputValue ;
 
     try {
       const res = await fetch("http://localhost:3000/api/teacher", {
         method: "POST",
-        body: JSON.stringify(submitData),
+        body: JSON.stringify(Object(inputValue)),
         headers: {
           "content-type": "application/json",
         },
       });
       console.log(res);
       if (res.ok) {
-        router.push("/");
+        // router.push("/");
+        console.log(inputValue);
       } else {
         console.log("Oops! Something is wrong.");
       }
@@ -54,6 +55,7 @@ const TeacherForm = () => {
   return (
     <div className="w-full h-full bg-zinc-700 rounded-lg lg:w-[50%]">
       <div className="flex flex-col justify-center items-start p-6 lg:items-center">
+        {/* <p>{inputValue}</p> */}
         <p className="">Title:</p>
         <select
           className="w-[100px] h-[50px] p-4 border border-grey-300 rounded-md focus:outline-none focus:border text-black"
@@ -62,6 +64,7 @@ const TeacherForm = () => {
             setInputValue({ ...inputValue, title: e.target.value })
           }
         >
+          <option>Select an option</option>
           <option>Mr</option>
           <option>Mrs</option>
           <option>Miss</option>
