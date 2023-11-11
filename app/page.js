@@ -3,9 +3,8 @@ import Card from "./card/page";
 import Links from "./links/page";
 
 export default function Home() {
-  const teacher = "Do You want to be part of the teaching process?, Click here";
-  const student =
-    "Do You want to be one of the best in the world?, Register here";
+  const teacher = "Do You want to be a Teacher?, Click here to register";
+  const student = "Do You want to be a Student?, Click here to register";
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8">
       <div className="flex flex-col items-center justify-center w-full h-full">
