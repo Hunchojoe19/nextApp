@@ -21,8 +21,6 @@ const TeacherForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const sub = inputValue ;
-
     try {
       const res = await fetch("http://localhost:3000/api/teacher", {
         method: "POST",
@@ -33,7 +31,7 @@ const TeacherForm = () => {
       });
       console.log(res);
       if (res.ok) {
-        // router.push("/");
+        router.push("/");
         console.log(inputValue);
       } else {
         console.log("Oops! Something is wrong.");
