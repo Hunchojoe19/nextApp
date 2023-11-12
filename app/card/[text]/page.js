@@ -1,6 +1,5 @@
 "use client";
-
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import TeacherForm from "@/app/component/teacherForm/page";
 import StudentForm from "@/app/component/studentForm/page";
